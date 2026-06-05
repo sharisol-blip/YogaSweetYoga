@@ -3,16 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Cocoa Plum Yoga</title>
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<title>Yoga Sweet Yoga</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --plumGray: #757575;
-  --plumCream: #ffd5d6;
-  --salmon: #df666b;
-  --gold: #c9a84c;
-  --cream: #fefcf6;
+  --pink: #EA348A;
+  --orange: #EB4834;
+  --yellow: #ECD447;
+  --dark: #1a1a1a;
+  --gray: #666666;
+  --lightgray: #f5f5f5;
+  --cream: #fffdf8;
+  --white: #ffffff;
+  --ink: #1a1a1a;
+  --radius: 12px;
+  /* keep category colors for dots */
   --centering: #0067c1;
   --breath: #b7c13c;
   --meditation: #26b5ca;
@@ -23,11 +29,13 @@
   --backbend: #ed9629;
   --twist: #e76865;
   --sitting: #4a007f;
-  --luscious: #c10007;
-  --endPose: #3b240e;
-  --shavasana: #19486b;
-  --ink: #2a2a2a;
-  --radius: 12px;
+  --luscious: #EA348A;
+  --endPose: #EB4834;
+  --shavasana: #ECD447;
+  /* aliases for old names */
+  --gold: #EA348A;
+  --salmon: #EB4834;
+  --plumGray: #666666;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -46,62 +54,62 @@ body {
 
 /* ── PREAMBLE ── */
 #screen-preamble {
-  background: linear-gradient(160deg, #ffd5d6 0%, #fefcf6 60%, #e8f4f8 100%);
+  background: linear-gradient(160deg, #EA348A 0%, #EB4834 50%, #ECD447 100%);
   align-items: center;
   justify-content: center;
   padding: 40px 24px;
 }
 .preamble-card {
-  border: 4px solid var(--gold);
+  border: 4px solid white;
   border-radius: 4px;
   padding: 6px;
   max-width: 380px;
   width: 100%;
 }
 .preamble-inner {
-  border: 2px solid var(--salmon);
+  border: 2px solid rgba(255,255,255,0.6);
   border-radius: 2px;
   padding: 32px 28px;
   text-align: center;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
 }
 .preamble-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.7rem;
   font-style: italic;
-  color: var(--gold);
+  color: white;
   line-height: 1.2;
   margin-bottom: 6px;
 }
 .preamble-sub {
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: var(--salmon);
+  color: rgba(255,255,255,0.9);
   margin-bottom: 20px;
 }
 .preamble-body {
   font-size: 0.82rem;
   line-height: 1.7;
-  color: var(--salmon);
+  color: rgba(255,255,255,0.9);
   margin-bottom: 28px;
 }
 .btn-begin {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.3rem;
   font-style: italic;
-  color: var(--gold);
+  color: white;
   background: none;
-  border: 2px solid var(--gold);
+  border: 2px solid white;
   border-radius: 40px;
   padding: 10px 32px;
   cursor: pointer;
   transition: all 0.2s;
 }
-.btn-begin:hover { background: var(--gold); color: white; }
+.btn-begin:hover { background: white; color: var(--pink); }
 
 /* ── TITLE SCREEN ── */
 #screen-title {
-  background: linear-gradient(160deg, #ffd5d6 0%, #fefcf6 60%, #e8f4f8 100%);
+  background: linear-gradient(160deg, #fff0f5 0%, #fff8f0 60%, #fffde8 100%);
   align-items: center;
   justify-content: center;
   padding: 40px 24px;
@@ -136,7 +144,7 @@ body {
   outline: none;
   transition: border-color 0.2s;
 }
-.title-input:focus { border-color: var(--salmon); }
+.title-input:focus { border-color: var(--pink); }
 .title-input::placeholder { color: #bbb; }
 .title-actions {
   display: flex;
@@ -148,15 +156,15 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.3rem;
   font-style: italic;
-  color: var(--gold);
+  color: var(--pink);
   background: none;
-  border: 2px solid var(--gold);
+  border: 2px solid var(--pink);
   border-radius: 40px;
   padding: 10px 28px;
   cursor: pointer;
   transition: all 0.2s;
 }
-.btn-gold:hover { background: var(--gold); color: white; }
+.btn-gold:hover { background: var(--pink); color: white; }
 .btn-saved {
   font-family: 'Raleway', sans-serif;
   font-size: 0.75rem;
@@ -175,8 +183,9 @@ body {
 /* ── WIZARD ── */
 #screen-wizard {
   flex-direction: column;
-  background: var(--cream);
+  background: #fafafa;
 }
+
 .wizard-header {
   padding: 16px 20px 12px;
   display: flex;
@@ -207,8 +216,8 @@ body {
 /* TRAIN */
 .train-bar {
   padding: 8px 12px;
-  background: rgba(0,0,0,0.03);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: rgba(234,52,138,0.05);
+  border-bottom: 1px solid rgba(234,52,138,0.12);
   overflow-x: auto;
   white-space: nowrap;
   min-height: 64px;
@@ -248,7 +257,7 @@ body {
   transition: border-color 0.2s, transform 0.15s;
 }
 .video-item:hover { transform: scale(1.03); }
-.video-item.selected { border-color: var(--gold); }
+.video-item.selected { border-color: var(--pink); }
 .video-item.dimmed { opacity: 0.35; }
 .video-item img {
   width: 100%;
@@ -289,7 +298,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
   font-style: italic;
-  color: var(--gold);
+  color: var(--pink);
   background: none;
   border: none;
   cursor: pointer;
@@ -312,13 +321,13 @@ body {
   background: #ddd;
   transition: background 0.2s;
 }
-.cat-dot.done { background: var(--gold); }
-.cat-dot.current { background: var(--salmon); transform: scale(1.3); }
+.cat-dot.done { background: var(--pink); }
+.cat-dot.current { background: var(--orange); transform: scale(1.3); }
 
 /* ── PREVIEW ── */
 #screen-preview {
   flex-direction: column;
-  background: linear-gradient(160deg, #ffd5d6 0%, #fefcf6 100%);
+  background: linear-gradient(160deg, #fff0f5 0%, #fffde8 100%);
 }
 .preview-header {
   padding: 28px 24px 16px;
@@ -423,7 +432,7 @@ body {
   border: 2px solid transparent;
   transition: all 0.2s;
 }
-.queue-thumb.playing { opacity: 1; border-color: var(--gold); }
+.queue-thumb.playing { opacity: 1; border-color: var(--yellow); }
 
 /* ── SAVED ROUTINES ── */
 #screen-saved {
@@ -431,7 +440,7 @@ body {
 }
 .saved-header {
   padding: 20px 24px 16px;
-  background: var(--shavasana);
+  background: linear-gradient(135deg, var(--pink), var(--orange));
   color: white;
   display: flex;
   align-items: center;
@@ -480,7 +489,7 @@ body {
   flex-shrink: 0;
 }
 .btn-play-saved {
-  background: var(--gold);
+  background: linear-gradient(135deg, var(--pink), var(--orange));
   color: white;
   border: none;
   border-radius: 50%;
@@ -502,7 +511,7 @@ body {
   padding: 4px 8px;
   flex-shrink: 0;
 }
-.btn-delete-saved:hover { color: var(--salmon); }
+.btn-delete-saved:hover { color: var(--orange); }
 
 /* ── VIDEO INFO MODAL ── */
 .modal-overlay {
@@ -549,7 +558,7 @@ body {
 .modal-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
-  color: var(--salmon);
+  color: var(--pink);
   font-style: italic;
 }
 .modal-subtitle {
@@ -565,7 +574,7 @@ body {
 .level-dot {
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--orange);
 }
 .modal-desc {
   font-size: 0.88rem;
@@ -598,7 +607,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem;
   font-style: italic;
-  background: var(--gold);
+  background: linear-gradient(135deg, var(--pink), var(--orange));
   color: white;
   border: none;
   border-radius: 40px;
@@ -643,8 +652,7 @@ body {
 <div id="screen-preamble" class="screen active">
   <div class="preamble-card">
     <div class="preamble-inner">
-      <div class="preamble-title">Create Your Own<br>Yoga Routine</div>
-      <div class="preamble-sub">w i t h &nbsp; Cocoa Plum Yoga</div>
+      <img src="logo_with_words_transparent.png" style="width:280px;max-width:90%;margin-bottom:16px;" alt="Yoga Sweet Yoga"><div class="preamble-sub">y o u r &nbsp; y o g a , &nbsp; a t &nbsp; h o m e</div>
       <div class="preamble-body">
         You have the freedom to create your own yoga routine. Some days you may just want to stretch. Some days you want to give yourself a challenge. Maybe you want to hear about the concept "Everything is impermanent."<br><br>
         There are many meditations, breathing styles, warm-ups, and peak poses to choose from! Once you are all done choosing, I create a personalized video you can play now or save for later.<br><br>
@@ -657,7 +665,7 @@ body {
 
 <!-- TITLE / CHOOSE -->
 <div id="screen-title" class="screen">
-  <img src="images/baseLogo.png" class="logo-watermark" alt="">
+  <img src="logo_with_words_transparent.png" style="width:260px;max-width:80%;margin-bottom:8px;opacity:0.9;" alt="Yoga Sweet Yoga">
   <div class="title-form">
     <input type="text" id="routine-name" class="title-input" placeholder="Enter routine name" maxlength="60">
     <div class="title-actions">
@@ -807,7 +815,7 @@ function renderWizardCategory() {
   const selected = routine[cat.key];
 
   // Header
-  document.getElementById('wizard-logo').src = 'images/' + cat.logo + '.png';
+  document.getElementById('wizard-logo').src = cat.logo + '.png';
   document.getElementById('wizard-cat-name').textContent = cat.key;
   document.getElementById('wizard-prompt').textContent = 'Please pick your ' + cat.key;
 
@@ -824,7 +832,7 @@ function renderWizardCategory() {
       (!selected && v.fileName !== 'skip' ? '' : '') +
       (selected && selected.id !== v.id && v.fileName !== 'skip' ? ' dimmed' : '');
     div.innerHTML = `
-      <img src="images/${v.imageName}.png" alt="${v.title}" onerror="this.src='images/skip.png'">
+      <img src="${v.imageName}.png" alt="${v.title}" onerror="this.src='skip.png'">
       <button class="info-btn" onclick="openModal(event, ${v.id})">i</button>
     `;
     div.addEventListener('click', function(e) {
@@ -872,10 +880,10 @@ function renderTrain() {
   CATEGORIES.forEach(cat => {
     if (routine[cat.key] && routine[cat.key].fileName !== 'skip') {
       const img = document.createElement('img');
-      img.src = 'images/' + routine[cat.key].imageName + '.png';
+      img.src = routine[cat.key].imageName + '.png';
       img.className = 'train-thumb';
       img.alt = routine[cat.key].title;
-      img.onerror = function() { this.src = 'images/skip.png'; };
+      img.onerror = function() { this.src = 'skip.png'; };
       bar.appendChild(img);
     }
   });
@@ -908,7 +916,7 @@ function showPreview() {
       const div = document.createElement('div');
       div.className = 'preview-item';
       div.innerHTML = `
-        <img src="images/${v.imageName}.png" alt="${v.title}" onerror="this.src='images/skip.png'">
+        <img src="${v.imageName}.png" alt="${v.title}" onerror="this.src='skip.png'">
         <div class="preview-item-label">${cat.key}</div>
       `;
       grid.appendChild(div);
@@ -938,9 +946,9 @@ function buildPlayerQueue() {
   bar.innerHTML = '';
   playerQueue.forEach((v, i) => {
     const img = document.createElement('img');
-    img.src = 'images/' + v.imageName + '.png';
+    img.src = v.imageName + '.png';
     img.className = 'queue-thumb' + (i === 0 ? ' playing' : '');
-    img.onerror = function() { this.src = 'images/skip.png'; };
+    img.onerror = function() { this.src = 'skip.png'; };
     bar.appendChild(img);
   });
 }
@@ -1014,7 +1022,7 @@ function renderSavedList() {
         <span style="font-size:0.7rem;font-family:Raleway;font-style:normal;color:#aaa;">${entry.date || ''}</span>
       </div>
       <div class="saved-thumbs">
-        ${thumbs.map(v => `<img class="saved-thumb" src="images/${v.imageName}.png" onerror="this.src='images/skip.png'">`).join('')}
+        ${thumbs.map(v => `<img class="saved-thumb" src="${v.imageName}.png" onerror="this.src='skip.png'">`).join('')}
       </div>
       <button class="btn-play-saved" onclick="playSaved(${i})" title="Play">▶</button>
       <button class="btn-delete-saved" onclick="deleteSaved(${i})" title="Delete">×</button>
@@ -1043,7 +1051,7 @@ function openModal(e, videoId) {
   e.stopPropagation();
   const v = ALL_VIDEOS.find(x => x.id === videoId);
   if (!v) return;
-  document.getElementById('modal-img').src = 'images/' + v.imageName + '.png';
+  document.getElementById('modal-img').src = v.imageName + '.png';
   document.getElementById('modal-title').textContent = v.title;
   document.getElementById('modal-subtitle').textContent = v.subtitle;
   document.getElementById('modal-desc').textContent = v.description;
